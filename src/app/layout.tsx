@@ -42,7 +42,7 @@ export default function RootLayout({
               geistMono.variable,
             )}
           >
-            {/* <Navbar /> */}
+            <Navbar />
             <Sidebar />
             <Toaster />
             {children}

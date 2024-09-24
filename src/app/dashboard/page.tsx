@@ -9,7 +9,7 @@ import SkeletonLoadingPage from "@/components/SkeletonPage";
 import FileList from "@/components/Dashboard/FilesList";
 import DashboardLoader from "@/components/Dashboard/DashboardLoader";
 export default function DashboardPage() {
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   const convex = useConvex();
   const { user } = useKindeBrowserClient();
   const createUser = useMutation(api.user.createUser);
@@ -20,8 +20,10 @@ export default function DashboardPage() {
   }, [user]);
 
   const checkUser = async () => {
-    setLoading(true)
-    const result = await convex.query(api.user.getUser, { email: user?.email as string });
+    setLoading(true);
+    const result = await convex.query(api.user.getUser, {
+      email: user?.email as string,
+    });
     if (!result?.length) {
       createUser({
         name: user?.given_name as string,
@@ -31,14 +33,14 @@ export default function DashboardPage() {
         console.log(resp);
       });
     }
-    setLoading(false)
+    setLoading(false);
   };
 
   return (
     <div>
       <MaxWidthWrapper>
-        {loading ? (<DashboardLoader />) : (<FileList />)}
+        {loading ? <DashboardLoader /> : <FileList />}
       </MaxWidthWrapper>
     </div>
-  )
+  );
 }
